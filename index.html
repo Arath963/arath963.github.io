@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=devicewidth, initial-scale=1.0">
+
+	<title>RelevApp</title>
+	
+	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="index.js"></script>
+</head>
+<html lang="es">
+    <body>
+		<img src="Logo-JST.png" class="imageLogo">
+		
+		<h1>RelevApp</h1>
+		<h2>DNISAU - Formulario de Relevamiento Inicial</h2><br>
+		<p class="parrafoHeader">Exclusivo de uso interno de la JST</p><br>
+		<p class="parrafoHeader">Prohibida su difusión</p>
+		<img src="Img/Header-Relevapp.jpeg" class="imageHeader"> 
+		
+		<main class="contenedor">
+			<details open>
+				<summary>
+					<h4>AGENTE Y NOTIFICACIÓN</h4>
+				</summary>
+				<nav>
+					<p><strong>Investigador</strong></p>
+					<select name="seleccionar">
+						<option value="Investigador0">Seleccione investigador</option>
+						<option value="Investigador1">Adriel Miranda</option>
+						<option value="Investigador2">Alejandro Malara</option>
+						<option value="Investigador3">Aymara Giovanninni</option>
+						<option value="Investigador4">Carlos Puiggros</option>
+						<option value="Investigador5">Carlos Fernando Sosa</option>
+						<option value="Investigador6">Daniel Carlos Párraga</option>
+						<option value="Investigador7">María Elisa Kunhle</option>
+						<option value="Investigador8">Mariano Rindfleisch</option>
+						<option value="Investigador9">Maximiliano Gagliardi</option>
+					</select>
+					<br>
+					<input placeholder="Agregue investigador" class="inputText">
+					<br>
+					<p><strong>Auxiliar de campo/Asistente</strong></p>
+					<select name="seleccionar">
+						<option value="Auxiliar1">Mariano Menendez</option>
+						<option value="Auxiliar2">Nahuel Sfeir</option>
+						<option value="Auxiliar3">Ramiro Suarez</option>
+						<option value="Auxiliar4">Otro</option>
+					</select>
+					<br>
+					<input placeholder="Agregue auxiliar" class="inputText">
+					<br>
+					<p>Fuente de notificación</p>
+					<select>
+						<option value="Notificador1">Centro de control y respuesta JST</option>
+						<option value="Notificador2">Medio de prensa</option>
+						<option value="Notificador3">Otro</option>
+					</select>
+					<p>Fecha y hora de la notificación</p>
+					<input type="datetime-local" name="daytime" class="inputText">
+					<br>
+					<p>Fecha y hora de salida a la escena</p>
+					<input type="datetime-local" name="daytime" class="inputText">
+					<br>
+					<p>Fecha y hora de arribo a la escena</p>
+					<input type="datetime-local" name="daytime" class="inputText">
+					<br>
+					<p>Fecha y hora de salida de la escena</p>
+					<input type="datetime-local" name="daytime" class="inputText">
+					<br><br>
+				</nav>
+			</details>	
+			<details>
+				<summary>
+					<h4>LUGAR Y MOMENTO DEL SUCESO</h4>
+				</summary>
+				<nav>
+					<label>Provincia</label>
+					<select name="seleccionar" id="">
+						<option value="provincia1">Buenos Aires</option>
+						<option value="provincia2">C.A.B.A.</option>
+						<option value="provincia3">Catamarca</option>
+						<option value="provincia4">Chaco</option>
+						<option value="provincia5">Chubut</option>
+						<option value="provincia6">Córdoba</option>
+						<option value="provincia7">Corrientes</option>
+						<option value="provincia8">Entre Ríos</option>
+						<option value="provincia9">Formosa</option>
+						<option value="provincia10">Jujuy</option>
+						<option value="provincia11">La Pampa</option>
+						<option value="provincia12">La Rioja</option>
+						<option value="provincia13">Mendoza</option>
+						<option value="provincia14">Misiones</option>
+						<option value="provincia15">Neuquén</option>
+						<option value="provincia16">Río Negro</option>
+						<option value="provincia17">Salta</option>
+						<option value="provincia18">San Juan</option>
+						<option value="provincia19">San Luis</option>
+						<option value="provincia20">Santa Cruz</option>
+						<option value="provincia21">Santa Fe</option>
+						<option value="provincia22">Sgo. del Estero</option>
+						<option value="provincia23">Tierra del Fuego</option>
+						<option value="provincia24">Tucumán</option>
+					</select><br>
+					<label>Localidad/Partido/Depto.</label>
+					<input placeholder="Localidad/Partido/Depto." class="inputText">
+					<br><br>
+					<label>Establecer localización</label><br>
+					<em>(Verificar señal en el lugar)</em><br>
+					<button onclick="obtenerCoordenadas()">Pedir coordenadas:</button>
+					<br>
+					<label>Latitud: </label><input type="number" id="latitudInput">
+					<br>
+					<label>Longitud: </label><input type="number" id="longitudInput">
+					<br>
+					<script>
+						function obtenerCoordenadas() {
+							if ("geolocation" in navigator) {
+								navigator.geolocation.getCurrentPosition(function(position) {
+									var latitude = position.coords.latitude;
+									var longitude = position.coords.longitude;
+					
+									// Establecer los valores de los campos de entrada
+									document.getElementById("latitudInput").value = latitude;
+									document.getElementById("longitudInput").value = longitude;
+								});
+							} else {
+								console.log("Geolocalización no soportada en este navegador");
+							}
+						}
+					</script>
+
+					<br>
+					<p>Fecha y hora estimada del suceso</p> 
+					<input type="datetime-local" name="daytime" class="inputText">
+					<br>
+					<p>Nombre de la vía</p>
+					<input placeholder="Ruta Nacional/Avenida/Calle" class="inputText">
+					<br>
+					<p>Altura (Km/Nro./Otro)</p>
+					<input placeholder="Km 1055" class="inputText">
+					<br>
+					<p>Punto de referencia</p>
+					<input placeholder="Hito kilometral..." class="inputText">
+					<br>
+					<p>Coordenadas geográficas</p> 
+					<input placeholder="Ingresar manualmente" class="inputText">
+					<br>
+					<p>Altitud (msnm)</p>
+					<input class="inputText">
+					<br>
+					<p>Observaciones</p>
+					<textarea name="observaciones"></textarea><br><br>
+				</nav>
+			</details>
+			<details>
+				<summary>
+					<h4>INSTITUCIONES Y ORGANISMOS EN LA ESCENA</h4>
+				</summary>
+				<nav>
+					<label>Organismo judicial:</label><br>
+					<select name="seleccionar">
+						<option value="Juzgado1">Juzgado de Instrucción N°</option>
+						<option value="Juzgado2">Fiscalía de Investigación N°</option>
+						<option value="Juzgado3">Equipo Fiscal N°</option>
+						<option value="Juzgado4">Otro</option>
+					</select><br>
+					<select name="seleccionar">
+						<option value="0">Seleccione N°...</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+					</select><br>
+					<input placeholder="Ingrese N°..." type="number" class="inputText"><br>
+					<input placeholder="Ciudad" class="inputText"><br>
+					<br>
+					<label>Dependencia policial:</label><br>
+					<select name="seleccionar">
+						<option value="Policia1">Comisaría</option>
+						<option value="Policia2">Sub Comisaría</option>
+						<option value="Policia3">Patrulla Caminera</option>
+						<option value="Policia4">Otro</option>
+					</select><br>
+					<select name="seleccionar">
+						<option value="0">Seleccione N°...</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+					</select><br>
+					<input placeholder="Ciudad" class="inputText"><br>
+					<fieldset>
+						<legend>Otras instituciones:</legend>
+							Gendarmería Nacional<input type="checkbox"><br>
+							<input type="text" placeholder="Puesto" class="inputText"><br>
+							Agencia Nacional de Seguridad Vial<input type="checkbox"><br>
+							<input type="text" placeholder="Delegración" class="inputText"><br>
+							Concesionario Vial<input type="checkbox"><br>
+							<input type="text" placeholder="Empresa" class="inputText"><br>
+							Bomberos Voluntarios<input type="checkbox"><br>
+							<input placeholder="Lugar" class="inputText"><br>
+							<input placeholder="Lugar" class="inputText"><br>
+							<input placeholder="Lugar" class="inputText"><br>
+							Asistencia de Salud<input type="checkbox"><br>
+							<input placeholder="Lugar" class="inputText"><br>
+							<input placeholder="Lugar" class="inputText"><br>
+							<input placeholder="Lugar" class="inputText"><br>
+							Morgue<input type="checkbox"><br> 
+							<input placeholder="Lugar" class="inputText"><br>
+							Municipalidad<input type="checkbox"><br>
+							<input placeholder="Lugar" class="inputText"><br>
+							Grúas<input type="checkbox"><br>
+							<input placeholder="Empresa" class="inputText"><br>
+							<input placeholder="Empresa" class="inputText"><br>
+							<input placeholder="Empresa" class="inputText"><br>
+					</fieldset><br><br>
+				</nav>
+			</details>
+			<details>
+				<summary>
+					<h4>CARACTERÍSTICAS DE LA ESCENA AL ARRIBO DE LA JST</h4>
+				</summary>
+				<nav>
+					<input type="checkbox" class="chck">Escena liberada<br>
+					<input type="checkbox">Balizamiento/conos<br>
+					<input type="checkbox">Acordonamiento/zonas<br>
+					<input type="checkbox">Desvío de tránsito<br>
+					<input type="checkbox">Restricción de tránsito<br>
+					<input type="checkbox">Vehículos removidos<br>
+					<input type="checkbox">Indicios removidos<br>
+					<input type="checkbox">Personas/vehículos extraños en la escena<br>
+					<input type="checkbox">Asistencia sanitaria a víctimas<br>
+					<input type="checkbox">Cortes y rescate<br>
+					<input type="checkbox">Vías seguras de emergencia<br>
+					<input type="checkbox">Delimitación zonas no seguras<br><br>
+					<p>Observaciones</p>
+					<textarea name="observaciones"></textarea><br><br>
+				</nav>
+			</details>
+			<details>
+				<summary>
+					<h4>CARACTERÍSTICAS DEL SUCESO</h4>
+				</summary>
+				<nav>
+					<select>
+						<option value="Tipodesuceso1">Accidente</option>
+						<option value="Tipodescueso2">Incidente</option>
+						<option value="Tipodescueso3">Otro</option>
+					</select>
+					<input placeholder="Otro: Detallar" class="inputText"> 
+					<br><br>
+					<label>Clase de evento:</label>
+					<select>
+						<option value="Clasedeevento1">Choque contra vh detenido en banquina</option>
+						<option value="Clasedeevento2">Choque contra vh detenido en calzada</option>
+						<option value="Clasedeevento3">Choque contra inmueble</option>
+						<option value="Clasedeevento4">Choque contra árbol</option>
+						<option value="Clasedeevento5">Choque contra columna</option>
+						<option value="Clasedeevento6">Choque contra alcantarilla</option>
+						<option value="Clasedeevento7">Choque contra barrera</option>
+						<option value="Clasedeevento8">Choque contra puente</option>
+						<option value="Clasedeevento9">Atropello a peatón</option>
+						<option value="Clasedeevento10">Atropello a animal</option>
+						<option value="Clasedeevento11">Colisión frontal</option>
+						<option value="Clasedeevento12">Colisión lateral</option>
+						<option value="Clasedeevento13">Incendio</option>
+						<option value="Clasedeevento14">Raspado</option>
+						<option value="Clasedeevento15">Despiste</option>
+						<option value="Clasedeevento16">Vuelco</option>
+						<option value="Clasedeevento17">Despeñamiento</option>
+						<option value="Clasedeevento18">Colisión por alcance</option>
+						<option value="Clasedeevento9">Otro</option>
+					</select>
+					<input placeholder="Otro: Detallar" class="inputText"> 
+					<br><br>
+					<label>Evento combinado, detallar:</label><br>
+					<textarea name="Detalle_evento_combinado"></textarea><br><br>
+					<fieldset>
+						<legend>Personas y resultados:</legend>
+							Lesionadas totales <input type="number" placeholder="Indicar cantidad" class="inputNumber"><br>
+							Fallecidas totales <input type="number" placeholder="Indicar cantidad" class="inputNumber"><br>
+							Ilesas totales <input type="number" placeholder="Indicar cantidad" class="inputNumber"><br>
+							A determinar <input type="number" placeholder="Indicar cantidad" class="inputNumber"><br>
+							Observaciones:
+							<textarea name="Observaciones"></textarea>
+					</fieldset>
+				</nav>
+			</details>
+			<details>
+				<summary>
+				  <h4>VEHÍCULOS INVOLUCRADOS</h4>
+				</summary>
+				<nav>
+				  <label>Seleccione el tipo de vehículo</label><br>
+				  <select name="seleccionar vehiculo" id="tipoVehiculo">
+						<option value="0">Seleccione tipo de vehículo</option>
+						<option value="particular">Vehículo particular</option>
+						<option value="cargasnac">Vehículo de Cargas Nacional</option>
+						<option value="cargasint">Vehículo de Cargas Internacional</option>
+						<option value="vhpasajeros">Vehículo de pasajeros</option>
+				  </select><br>
+				  <button id="agregarVehiculo">Agregar vehículo</button>
+				</nav>
+				<hr>
+				<br>
+				<div id="contenedorFormularios"></div>
+			</details>
+			
+			<script>
+				// Obtener el botón "Agregar vehículo" y el contenedor de formularios
+				const btnAgregarVehiculo = document.getElementById("agregarVehiculo");
+				const contenedorFormularios = document.getElementById("contenedorFormularios");
+			  
+				// Agregar un evento de clic al botón "Agregar vehículo"
+				btnAgregarVehiculo.addEventListener("click", function() {
+				  const tipoVehiculo = document.getElementById("tipoVehiculo").value;
+				  let nuevoFormulario = "";
+			  
+				  // Generar el formulario correspondiente al tipo de vehículo seleccionado
+				  if (tipoVehiculo === "particular") {
+					nuevoFormulario = `
+					  <div id="vhParticular">
+						<!-- Código del formulario para vehículo particular -->
+						<h4 class="subh4">Vehículo particular</h4> <img src="img/camara.png" height="15px"><input type="checkbox">Marque si es fotografiado</input>
+						<br><br>
+ 						<label>Elija la clase de vehículo</label><br>
+  						<select name="claseParticular"><br>
+							<option value="0">Indique la clase</option>
+							<option value="compacto">Compacto</option>
+							<option value="sedan">Sedán</option>
+							<option value="utilitario">Utilitario</option>
+							<option value="suv">SUV</option>
+							<option value="camioneta1">Pick Up CS</option>
+							<option value="camioneta2">Pick Up CD</option>
+							<option value="motocicleta">Motocicleta</option>
+  						</select><br><br>
+						<label>Elija la categoría</label><br>
+						<select name="categoria">
+							<option value="m1">M1 - Más de 8 asientos hasta 3Tn</option>
+							<option value="m2">M2 - Más de 8 asientos hasta 5Tn</option>
+						</select><br><br>
+						<fieldset>
+							<label>Marca: </label><input type="text"><br>
+							<label>Modelo: </label><input type="text"><br>
+							<label>Año: </label><input type="number"><br>
+							<label>Matrícula: </label><input type="text"><br>
+						</fieldset><br>
+							<label>Uso: </label><br>
+							<select name="" id="">
+								<option value="particular">Particular</option>
+								<option value="adeterminar">A determinar</option>
+							</select><br><br>
+						<label>Sentido de circulación:</label><br>
+						<label>Desde: </label><input type="text"><br>
+						<label>Hacia: </label><input type="text"><br><br>
+						<hr>
+					  </div>
+					`;
+				  } else if (tipoVehiculo === "cargasnac") {
+					nuevoFormulario = `
+					  <div id="vhCargasNac">
+						<!-- Código del formulario para vehículo de cargas nacional -->
+						<h4 class="subh4">Vehículo de Cargas Nacional</h4> <img src="img/camara.png" height="15px"><input type="checkbox">Marque si es fotografiado</input>
+					  <br><br>
+					   <p>Elija la clase de vehículo individual o combinado</p>
+						<select name="claseCargasNac"><br>
+						  <option value="0">Indique la clase</option>
+						  <option value="autobomba">Autobomba</option>
+						  <option value="camionrigido">Camión rígido</option>
+						  <option value="tractor">Camión tractor</option>
+						  <option value="camioneta">Camioneta</option>
+						  <option value="cisterna">Cisterna</option>
+						  <option value="furgon">Furgón</option>
+						  <option value="furgoneta">Furgoneta</option>
+						  <option value="gruamovil">Grúa Móvil</option>
+						  <option value="caudales">Caudales</option>
+						  <option value="otro">Otro</option>
+						  <option value="adeterminar">A determinar</option>
+						</select>
+						<select name="claseCargasNac"><br>
+							<option value="0">Indique la clase</option>
+							<option value="acoplado">Acoplado</option>
+							<option value="batan">Batán</option>
+							<option value="bitren">Bitren</option>
+							<option value="casarodante">Casa rodante</option>
+							<option value="cisterna">Cisterna</option>
+							<option value="semirremolque">Semirremolque</option>
+							<option value="trailer">Tráiler</option>
+							<option value="otro">Otro</option>
+							<option value="adeterminar">A determinar</option>
+						  </select><br><br>
+					  <fieldset>
+							<legend>Matrículas de los vehículos</legend>
+					  		<label>Dominio del tractor: </label><input type="text"><br>
+					  		<label>Dominio del acoplado/semi 1: </label><input type="text"><br>
+					 			<label>Dominio del acoplado/semi 2: </label><input type="text"><br>
+					  </fieldset><br>
+					  <label>Elija las categorías</label>
+					  <select name="categoria">
+						  <option value="n1">N1 - Hasta 3Tn</option>
+						  <option value="n2">N2 - Hasta 12Tn</option>
+						  <option value="n3">N3 - Más de 12Tn</option>
+						  <option value="adeterminar">A determinar</option>
+					  </select>
+					  <select name="categoria 2">
+						<option value="o1">O1 - Remolque hasta 750kg</option>
+						<option value="o2">O2 - Remolque hasta 3.5Tn</option>
+						<option value="o3">O3 - Remolque hasta 10Tn</option>
+						<option value="o4">O4 - Remolque de más de 10Tn</option>
+						<option value="adeterminar">A determinar</option>
+					  </select>
+					  <label>Categoría del acoplado/semi 2: </label><input type="text">
+					  <br><br>
+					  <fieldset>
+							<legend>Identificación del tractor</legend>
+						  	<label>Marca del tractor: </label><input type="text"><br>
+						  	<label>Modelo: </label><input type="text"><br>
+						  	<label>Año: </label><input type="number"><br>
+					  </fieldset><br>
+					  <fieldset>
+							<legend>Identificación del acomplado/semi 1</legend>
+								<label>Marca del acoplado/semi 1: </label><input type="text"><br>
+								<label>Modelo: </label><input type="text"><br>
+								<label>Año: </label><input type="number"><br>
+					  </fieldset><br>
+					  <fieldset>
+							<legend>Identificación del acoplado/semi 2</legend>
+								<label>Marca del acoplado/semi 2: </label><input type="text"><br>
+								<label>Modelo: </label><input type="text"><br>
+								<label>Año: </label><input type="number"><br>
+					  </fieldset><br>
+					  <fieldset>
+							<legend>Datos de la empresa de la unidad</legend>
+								<label>Empresa de la unidad: </label><input type="text"><br>
+								<label>Datos de contacto: </label><input type="text"><br>
+					  </fieldset><br>
+					  <label>Ocasión de servicios: </label><br>
+					  <input type="radio"> Si<br>
+						<input type="radio"> No<br>
+						<input type="radio"> A determinar<br>
+					  <label>Carga transportada: </label><input type="text"><br>
+					  <label>Origen: </label><input type="text">
+					  <label>Destino: </label><input type="text"><br><br>
+					  <fieldset>
+						<legend>Documentaciones de la unidad (Marcas si se fotografió</legend>
+					  		<label>RTO</label><input type="checkbox"><br>
+					  		<label>Manifiesto de carga</label><input type="checkbox"><br>
+								<label>Cédula verde</label><input type="checkbox">
+					  </fieldset><br>
+					  <label>Sentido de circulación:</label><br>
+					  <label>Desde: </label><input type="text"><br>
+					  <label>Hacia: </label><input type="text"><br><br>
+					  <hr>
+					  </div>
+					`;
+					} else if (tipoVehiculo === "cargasint") {
+      			nuevoFormulario = `
+        		<div id="vhCargasInt">
+          	<!-- Código del formulario para vehículo de cargas internacional -->
+						<h4 class="subh4">Vehículo de Cargas Internacional</h4> <img src="img/camara.png" height="15px"><input type="checkbox">Marque si es fotografiado</input>
+					  <br><br>
+						<p>Elija el país de origen del vehículo</p>
+						<select name="paisOrigen"><br>
+						  <option value="0">Indique la clase</option>
+						  <option value="brasil">Brasil</option>
+						  <option value="bolivia">Bolivia</option>
+						  <option value="chile">Chile</option>
+						  <option value="paraguay">Paraguay</option>
+						  <option value="uruguay">Uruguay</option>
+						  <option value="otro">Otro</option>
+						  <option value="adeterminar">A determinar</option>
+						</select><br><br>
+					   <p>Elija la clase de vehículo individual o combinado</p>
+						<select name="claseCargasNac"><br>
+						  <option value="0">Indique la clase</option>
+						  <option value="autobomba">Autobomba</option>
+						  <option value="camionrigido">Camión rígido</option>
+						  <option value="tractor">Camión tractor</option>
+						  <option value="camioneta">Camioneta</option>
+						  <option value="cisterna">Cisterna</option>
+						  <option value="furgon">Furgón</option>
+						  <option value="furgoneta">Furgoneta</option>
+						  <option value="gruamovil">Grúa Móvil</option>
+						  <option value="caudales">Caudales</option>
+						  <option value="otro">Otro</option>
+						  <option value="adeterminar">A determinar</option>
+						</select>
+						<select name="claseCargasNac"><br>
+							<option value="0">Indique la clase</option>
+							<option value="acoplado">Acoplado</option>
+							<option value="batan">Batán</option>
+							<option value="bitren">Bitren</option>
+							<option value="casarodante">Casa rodante</option>
+							<option value="cisterna">Cisterna</option>
+							<option value="semirremolque">Semirremolque</option>
+							<option value="trailer">Tráiler</option>
+							<option value="otro">Otro</option>
+							<option value="adeterminar">A determinar</option>
+						  </select><br><br>
+					  <fieldset>
+							<legend>Matrículas de los vehículos</legend>
+					  		<label>Dominio del tractor: </label><input type="text"><br>
+					  		<label>Dominio del acoplado/semi 1: </label><input type="text"><br>
+					 			<label>Dominio del acoplado/semi 2: </label><input type="text"><br>
+					  </fieldset><br>
+					  <label>Elija las categorías</label>
+					  <select name="categoria">
+						  <option value="n1">N1 - Hasta 3Tn</option>
+						  <option value="n2">N2 - Hasta 12Tn</option>
+						  <option value="n3">N3 - Más de 12Tn</option>
+						  <option value="adeterminar">A determinar</option>
+					  </select>
+					  <select name="categoria 2">
+						<option value="o1">O1 - Remolque hasta 750kg</option>
+						<option value="o2">O2 - Remolque hasta 3.5Tn</option>
+						<option value="o3">O3 - Remolque hasta 10Tn</option>
+						<option value="o4">O4 - Remolque de más de 10Tn</option>
+						<option value="adeterminar">A determinar</option>
+					  </select>
+					  <label>Categoría del acoplado/semi 2: </label><input type="text">
+					  <br><br>
+					  <fieldset>
+							<legend>Identificación del tractor</legend>
+						  	<label>Marca del tractor: </label><input type="text"><br>
+						  	<label>Modelo: </label><input type="text"><br>
+						  	<label>Año: </label><input type="number"><br>
+					  </fieldset><br>
+					  <fieldset>
+							<legend>Identificación del acomplado/semi 1</legend>
+								<label>Marca del acoplado/semi 1: </label><input type="text"><br>
+								<label>Modelo: </label><input type="text"><br>
+								<label>Año: </label><input type="number"><br>
+					  </fieldset><br>
+					  <fieldset>
+							<legend>Identificación del acoplado/semi 2</legend>
+								<label>Marca del acoplado/semi 2: </label><input type="text"><br>
+								<label>Modelo: </label><input type="text"><br>
+								<label>Año: </label><input type="number"><br>
+					  </fieldset><br>
+					  <fieldset>
+							<legend>Datos de la empresa de la unidad</legend>
+								<label>Empresa de la unidad: </label><input type="text"><br>
+								<label>Datos de contacto: </label><input type="text"><br>
+					  </fieldset><br>
+					  <label>Ocasión de servicios: </label><br>
+					   	<input name="opcion" type="radio">Si<br>
+							<input name="opcion" type="radio">No<br>
+							<input name="opcion" type="radio">A determinar<br>
+					  <label>Carga transportada: </label><input type="text"><br>
+					  <label>Origen: </label><input type="text">
+					  <label>Destino: </label><input type="text"><br><br>
+					  <fieldset>
+						<legend>Documentaciones de la unidad (Marcas si se fotografió</legend>
+					  		<label>Revisión técnica</label><input type="checkbox"><br>
+					  		<label>Manifiesto de carga</label><input type="checkbox"><br>
+								<label>Cédula del automotor</label><input type="checkbox"><br>
+								<label>Observaciones:</label><br>
+								<textarea></textarea>
+					  </fieldset><br>
+					  <label>Sentido de circulación:</label><br>
+					  <label>Desde: </label><input type="text"><br>
+					  <label>Hacia: </label><input type="text"><br><br>
+					  <hr>
+        		</div>
+      			`;
+    			} else if (tipoVehiculo === "vhpasajeros") {
+      			nuevoFormulario = `
+        		<div id="vhPasajeros">
+         		<!-- Código del formulario para ómnibus -->
+						 <h4 class="subh4">Vehículo de pasajeros</h4> <img src="img/camara.png" height="15px"><input type="checkbox">Marque si es fotografiado</input>
+					  <br><br>
+						<p>Especifique la jurisdicción</p>
+						<select name="paisOrigen"><br>
+						  <option value="0">Indique la jurisdicción</option>
+							<option value="nacional">Nacional</option>
+						  <option value="internacional">Internacional</option>
+						  <option value="provincial">Provincial</option>
+						  <option value="local">Local</option>
+						  <option value="otro">Otro</option>
+						  <option value="adeterminar">A determinar</option>
+						</select><br><br>
+						<p>En caso de jurisdicción internacional - Indique el país de origen</p>
+						<select name="paisOrigen"><br>
+						  <option value="0">Indique el país</option>
+							<option value="brasil">Brasil</option>
+						  <option value="bolivia">Bolivia</option>
+						  <option value="chile">Chile</option>
+						  <option value="paraguay">Paraguay</option>
+						  <option value="uruguay">Uruguay</option>
+						  <option value="otro">Otro</option>
+						  <option value="adeterminar">A determinar</option>
+						</select><br><br>
+					   <p>Elija la categoría del vehículo y su tipo</p>
+						<select name="categPasajeros"><br>
+						  <option value="0">Indique la categoría</option>
+						  <option value="m1">M1 - Menos de 8 asientos y hasta 3.5Tn</option>
+						  <option value="m2">M2 - Más de 8 asientos y menos de 5Tn</option>
+						  <option value="m3">M3 - Más de 8 asientos y más de 5Tn</option>
+						  <option value="adeterminar">A determinar</option>
+						</select>
+						<select name="tipoPasajeros"><br>
+							<option value="0">Indique el tipo</option>
+							<option value="ambulancia">Ambulancia</option>
+							<option value="motorhome">Motorhome</option>
+							<option value="microomnibus">Microómnibus VAN</option>
+							<option value="minibus">Minibus</option>
+							<option value="midibus">Midibus</option>
+							<option value="omnibusurb">Ómnibus Urbano</option>
+							<option value="omnibusinterurb">Ómnibus Interurbano</option>
+							<option value="omnibusinterurb2">Ómnibus Interurbano doble piso</option>
+							<option value="omnibuspisonorm">Ómnibus Piso normal</option>
+							<option value="omnibuspisomedio">Ómnibus Piso y medio</option>
+							<option value="omnibusart">Ómnibus Articulado</option>
+							<option value="otro">Otro</option>
+							<option value="adeterminar">A determinar</option>
+						  </select><br><br>
+					  <fieldset>
+							<legend>Datos del vehículo</legend>
+					  		<label>Empresa: </label><input type="text"><br>
+					  		<label>N° de Interno: </label><input type="text"><br>
+								<label>Datos de contacto: </label><input type="text"><br>
+					 			<label>Dominio del vehículo: </label><input type="text"><br>
+					  </fieldset><br>
+					  <br>
+					  <fieldset>
+							<legend>Identificación de la unidad</legend>
+						  	<label>Marca del chasis: </label><input type="text"><br>
+								<label>Marca de carrocería: </label><input type="text"><br>
+						  	<label>Modelo: </label><input type="text"><br>
+						  	<label>Año: </label><input type="number"><br>
+					  </fieldset><br>
+						<fieldset>
+					  	<legend>Ocasión de servicios: </legend>
+					  		<input name="opcion" type="radio">Si<br>
+							<input name="opcion" type="radio">No<br>
+							<input name="opcion" type="radio">A determinar
+						</fieldset><br>
+						<fieldset>
+							<legend>Información sobre el servicio</legend>
+					  		<label>Cantidad de pasajeros: </label><input type="text"><br>
+					 			<label>Origen: </label><input type="text"><br>
+					  		<label>Destino: </label><input type="text"><br><br>
+								<label>Vía de circulación:</label><input type="text"><br><br>
+								<label>Sentido de circulación:</label><br>
+					  		<label>Desde: </label><input type="text"><br>
+					  		<label>Hacia: </label><input type="text"><br><br>
+					  </fieldset>
+						<fieldset class="documentacionPasajeros">
+							<legend>Documentación unidad</legend>
+								<label>Seguro</label><input type="checkbox"><br>
+								<label>Revisión técnica/RTO</label><input type="checkbox"><br>
+								<label>Vencimiento del seguro:</label><input type="date" placeholder="Indique fecha"><br>
+					  		<label>Lista de pasajeros</label><input type="checkbox"><br>
+								<label>DUT</label><input type="checkbox"><br>
+								<label>Cédula del automotor</label><input type="checkbox"><br>
+								<label>Observaciones/Otros documentos:</label><br>
+								<textarea></textarea><br>
+								<fieldset>
+									<legend>Marcas documentación fotografiada</legend>
+										<label>Seguro</label><img src="img/camara.png" height="15px"><input type="checkbox"><br>
+										<label>RTO</label><img src="img/camara.png" height="15px"><input type="checkbox"><br>
+										<label>Lista de pasajeros</label><img src="img/camara.png" height="15px"><input type="checkbox"><br>
+					  				<label>DUT</label><img src="img/camara.png" height="15px"><input type="checkbox"><br>
+										<label>Cédula automotor</label><img src="img/camara.png" height="15px"><input type="checkbox"><br>
+										<label>Otros</label><img src="img/camara.png" height="15px"><input type="checkbox">
+										<textarea></textarea>
+								</fieldset>
+							</fieldset><br>
+					  <hr>
+        		</div>
+      		`;
+    		}
+
+    		// Agregar el nuevo formulario al contenedor de formularios
+    		contenedorFormularios.innerHTML += nuevoFormulario;
+  			});
+			</script>
+			
+				</nav>
+			</details>
+			<details>
+				<summary>
+					<h4>PERSONAS INVOLUCRADAS</h4>
+				</summary>
+				<nav>
+						<label>Seleccione la persona</label><br>
+						<select name="seleccionar persona" id="tipoPersona">
+							<option value="0">Seleccione la persona</option>
+							<option value="conductor">Conductor/a</option>
+							<option value="acompañante">Acompañante</option>
+							<option value="ocupante">Ocupante</option>
+							<option value="pasajero">Pasajero/a</option>
+							<option value="funcionario">Funcionario/a</option>
+							<option value="testigo">Testigo</option>
+							<option value="peaton">Peatón</option>
+							<option value="otro">Otro</option>
+						</select><br>
+						<button id="agregarPersona">Agregar persona</button>
+				</nav>
+				<hr>
+				<div id="contenedorFormulariosPersonas"></div>
+			</details>
+				
+			<script>
+				// Obtener el botón "Agregar persona" y el contenedor de formularios
+				const btnAgregarPersona = document.getElementById("agregarPersona");
+				const contenedorFormulariosPersonas = document.getElementById("contenedorFormulariosPersonas");
+			  
+				// Agregar un evento de clic al botón "Agregar persona"
+				btnAgregarPersona.addEventListener("click", function() {
+				  const tipoPersona = document.getElementById("tipoPersona").value;
+				  let nuevoFormulario2 = "";
+			  
+				  // Generar el formulario correspondiente al tipo de persona seleccionado
+				  if (tipoPersona === "conductor") {
+					nuevoFormulario2 = `
+					  <div id="personaConductor">
+							<!-- Código del formulario para persona conductor -->
+							<h4 class="subh4">Conductor</h4>
+							<label>Elija la clase de conductor</label><br>
+								<select name="claseConductor"><br>
+									<option value="0">Indique la clase</option>
+									<option value="activo">Conductor activo</option>
+									<option value="pasivo">Conductor pasivo</option>
+									<option value="adeterminar">A determinar</option>
+								</select><br><br>
+							<label>Dominio del vehículo:</label><br>
+							<input type="text" class="inputText"><br><br>
+							<fieldset>
+								<legend>Datos del conductor</legend>
+									<label>Nombre: </label><input type="text" class="inputText"><br>
+									<label>Apellido: </label><input type="text" class="inputText"><br>
+									<label>Edad: </label><input type="number" class="inputNumber"><br>
+									<label>DNI: </label><input type="number" class="inputNumber"><br>
+									<label>Fecha de nacimiento: </label><input type="date" class="inputText"><br>
+									<label>Domicilio: </label><input type="text" class="inputText"><br>
+									<label>Teléfono: </label><input type="number" class="inputText"><br>
+									<label>E-mail: </label><input type="email" class="inputText"><br>
+							</fieldset><br>
+							<fieldset>
+								<legend>Habilitaciones del conductor</legend>
+									Licencia de porte:<input type="checkbox"> <img src="img/camara.png" height="15px"> <input type="checkbox"><br><br>
+									<label>Precisar clase y subclase: </label><input type="text" class="inputText"><br>
+									<label>Fecha de vencimiento: </label><input type="date" class="inputText"><br>
+									<label>Agencia de tramitación: </label><input type="text" class="inputText"><br>
+									<label>Observaciones: </label><br>
+									<textarea></textarea><br>
+							</fieldset><br>
+							<fieldset>
+								<legend>Condiciones: </legend>
+								<select>
+									<option value="ileso">Ileso/a</option>
+									<option value="lesionado">Lesionado/a</option>
+									<option value="fallecido">Fallecido/a</option>
+									<option value="adeterminar">A determinar</option>
+								</select>
+							</fieldset><br>
+							<fieldset>
+								<legend>Indique si fue trasladado/a:</legend>
+									<input type="text" placeholder="Lugar">
+									<label>Observaciones:</label><br>
+									<textarea></textarea><br>
+							</fieldset>
+							<hr>
+					  </div>
+					`;
+				  } else if (tipoPersona === "acompañante") {
+					nuevoFormulario2 = `
+					  <div id="personaAcompañante">
+						<!-- Código del formulario para vehículo de cargas nacional -->
+						<h4 class="subh4">Acompañante</h4>
+							<label>Dominio del vehículo:</label><br>
+							<input type="text" class="inputText"><br><br>
+							<fieldset>
+								<legend>Datos del acompañante</legend>
+									<label>Nombre: </label><input type="text" class="inputText"><br>
+									<label>Apellido: </label><input type="text" class="inputText"><br>
+									<label>Edad: </label><input type="number" class="inputNumber"><br>
+									<label>DNI: </label><input type="number" class="inputNumber"><br>
+									<label>Fecha de nacimiento: </label><input type="date" class="inputText"><br>
+									<label>Domicilio: </label><input type="text" class="inputText"><br>
+									<label>Teléfono: </label><input type="number" class="inputText"><br>
+									<label>E-mail: </label><input type="email" class="inputText"><br>
+							</fieldset><br>
+							<fieldset>
+								<legend>Condiciones: </legend>
+								<select>
+									<option value="ileso">Ileso/a</option>
+									<option value="lesionado">Lesionado/a</option>
+									<option value="fallecido">Fallecido/a</option>
+									<option value="adeterminar">A determinar</option>
+								</select>
+							</fieldset><br>
+							<fieldset>
+								<legend>Indique si fue trasladado/a:</legend>
+									<input type="text" placeholder="Lugar">
+									<label>Observaciones: </label><br>
+									<textarea></textarea><br>
+							</fieldset>
+							<hr>
+					  </div>
+					`;
+					} else if (tipoPersona === "ocupante") {
+      			nuevoFormulario2 = `
+        		<div id="personaOcupante">
+          	<!-- Código del formulario para vehículo de cargas internacional -->
+						<h4 class="subh4">Ocupante</h4>
+							<label>Dominio del vehículo:</label><br>
+							<input type="text" class="inputText"><br><br>
+							<fieldset>
+								<legend>Datos del ocupante</legend>
+									<label>Nombre: </label><input type="text" class="inputText"><br>
+									<label>Apellido: </label><input type="text" class="inputText"><br>
+									<label>Edad: </label><input type="number" class="inputNumber"><br>
+									<label>DNI: </label><input type="number" class="inputNumber"><br>
+									<label>Fecha de nacimiento: </label><input type="date" class="inputText"><br>
+									<label>Domicilio: </label><input type="text" class="inputText"><br>
+									<label>Teléfono: </label><input type="number" class="inputText"><br>
+									<label>E-mail: </label><input type="email" class="inputText"><br>
+							</fieldset><br>
+							<fieldset>
+								<legend>Posición dentro del vehículo: </legend>
+								<select>
+									<option value="segplazaizq">2da. Plaza - Izquierda</option>
+									<option value="segplazamedio">2da. Plaza - Medio</option>
+									<option value="segplazader">2da. Plaza - Derecha</option>
+									<option value="terplazaizq">3ra. Plaza - Izquierda</option>
+									<option value="terplazamedio">3ra. Plaza - Medio</option>
+									<option value="terplazader">3ra. Plaza - Derecha</option>
+									<option value="adeterminar">A determinar</option>
+								</select>
+							</fieldset><br>
+							<fieldset>
+								<legend>Condiciones: </legend>
+								<select>
+									<option value="ileso">Ileso/a</option>
+									<option value="lesionado">Lesionado/a</option>
+									<option value="fallecido">Fallecido/a</option>
+									<option value="adeterminar">A determinar</option>
+								</select>
+							</fieldset><br>
+							<fieldset>
+								<legend>Indique si fue trasladado/a:</legend>
+									<input type="text" placeholder="Lugar">
+									<label>Observaciones: </label><br>
+									<textarea></textarea><br>
+							</fieldset>
+							<hr>
+					  </div>
+      			`;
+    			} else if (tipoPersona === "pasajero") {
+      			nuevoFormulario2 = `
+        		<div id="personaPasajero">
+         		<!-- Código del formulario para ómnibus -->
+						 <h4 class="subh4">Pasajero/a</h4>
+							<label>Dominio del vehículo:</label><br>
+							<input type="text" class="inputText"><br><br>
+							<fieldset>
+								<legend>Datos del pasaero/a</legend>
+									<label>Nombre: </label><input type="text" class="inputText"><br>
+									<label>Apellido: </label><input type="text" class="inputText"><br>
+									<label>Edad: </label><input type="number" class="inputNumber"><br>
+									<label>DNI: </label><input type="number" class="inputNumber"><br>
+									<label>Fecha de nacimiento: </label><input type="date" class="inputText"><br>
+									<label>Domicilio: </label><input type="text" class="inputText"><br>
+									<label>Teléfono: </label><input type="number" class="inputText"><br>
+									<label>E-mail: </label><input type="email" class="inputText"><br>
+							</fieldset><br>
+							<fieldset>
+								<legend>Posición dentro del vehículo:</legend>
+									<label>Indique el asiento:</label>
+									<input type="text" placeholder="N° butaca">
+									<label>Observaciones: </label><br>
+									<textarea></textarea><br>
+							</fieldset><br>
+							<fieldset>
+								<legend>Condiciones: </legend>
+								<select>
+									<option value="ileso">Ileso/a</option>
+									<option value="lesionado">Lesionado/a</option>
+									<option value="fallecido">Fallecido/a</option>
+									<option value="adeterminar">A determinar</option>
+								</select>
+							</fieldset><br>
+							<fieldset>
+								<legend>Indique si fue trasladado/a:</legend>
+									<input type="text" placeholder="Lugar">
+									<label>Observaciones: </label><br>
+									<textarea></textarea><br>
+							</fieldset>
+							<hr>
+					  </div>
+      		`;
+					} else if (tipoPersona === "funcionario") {
+      			nuevoFormulario2 = `
+        		<div id="personaFuncionario">
+         		<!-- Código del formulario para ómnibus -->
+						 <h4 class="subh4">Funcionario/a</h4>
+							<label>Organismo al que pertenece:</label><br>
+							<input type="text" class="inputText"><br><br>
+							<label>Cargo:</label><br>
+							<input type="text" class="inputText"><br><br>
+							<fieldset>
+								<legend>Datos del funcionario/a</legend>
+									<label>Nombre: </label><input type="text" class="inputText"><br>
+									<label>Apellido: </label><input type="text" class="inputText"><br>
+									<label>Domicilio: </label><input type="text" class="inputText"><br>
+									<label>Teléfono: </label><input type="number" class="inputText"><br>
+									<label>E-mail: </label><input type="email" class="inputText"><br>
+							</fieldset><br>
+							<hr>
+					  </div>
+      		`;
+					} else if (tipoPersona === "testigo") {
+      			nuevoFormulario2 = `
+        		<div id="personaTestigo">
+         		<!-- Código del formulario para ómnibus -->
+						 <h4 class="subh4">Testigo</h4>
+							<fieldset>
+								<legend>Datos del testigo</legend>
+									<label>Nombre: </label><input type="text" class="inputText"><br>
+									<label>Apellido: </label><input type="text" class="inputText"><br>
+									<label>Domicilio: </label><input type="text" class="inputText"><br>
+									<label>Teléfono: </label><input type="number" class="inputText"><br>
+									<label>E-mail: </label><input type="email" class="inputText"><br>
+							</fieldset><br>
+							<hr>
+					  </div>
+      		`;
+					} else if (tipoPersona === "otro") {
+      			nuevoFormulario2 = `
+        		<div id="personaOtro">
+         		<!-- Código del formulario para ómnibus -->
+						 <h4 class="subh4">Otra persona</h4>
+							<fieldset>
+								<legend>Datos de la persona</legend>
+									<label>Nombre: </label><input type="text" class="inputText"><br>
+									<label>Apellido: </label><input type="text" class="inputText"><br>
+									<label>Domicilio: </label><input type="text" class="inputText"><br>
+									<label>Teléfono: </label><input type="number" class="inputText"><br>
+									<label>E-mail: </label><input type="email" class="inputText"><br>
+							</fieldset><br>
+							<hr>
+					  </div>
+      		`;
+					} else if (tipoPersona === "peaton") {
+      			nuevoFormulario2 = `
+        		<div id="personaPeatón">
+         		<!-- Código del formulario para ómnibus -->
+						 <h4 class="subh4">Peatón</h4>
+							<fieldset>
+								<legend>Datos del peatón</legend>
+									<label>Nombre: </label><input type="text" class="inputText"><br>
+									<label>Apellido: </label><input type="text" class="inputText"><br>
+									<label>Domicilio: </label><input type="text" class="inputText"><br>
+									<label>Edad: </label><input type="number" class="inputNumber"><br>
+									<label>DNI: </label><input type="number" class="inputNumber"><br>
+									<label>Fecha de nacimiento: </label><input type="date" class="inputText"><br>
+									<label>Teléfono: </label><input type="number" class="inputText"><br>
+									<label>E-mail: </label><input type="email" class="inputText"><br>
+							</fieldset><br>
+							<fieldset>
+								<legend>Condiciones: </legend>
+								<select>
+									<option value="ileso">Ileso/a</option>
+									<option value="lesionado">Lesionado/a</option>
+									<option value="fallecido">Fallecido/a</option>
+									<option value="adeterminar">A determinar</option>
+								</select>
+							</fieldset><br>
+							<fieldset>
+								<legend>Indique si fue trasladado/a:</legend>
+									<input type="text" placeholder="Lugar">
+									<label>Observaciones: </label><br>
+									<textarea></textarea><br>
+							</fieldset>
+							<hr>
+					  </div>
+      		`;
+    		}
+
+    		// Agregar el nuevo formulario al contenedor de formularios
+    		contenedorFormulariosPersonas.innerHTML += nuevoFormulario2;
+  			});
+			</script>
+
+			<details>
+				<summary>
+					<h4>CARACTERÍSTICAS DE LA VÍA AL ARRIBO DE LA JST</h4>
+				</summary>
+				<nav>
+					<p>Configuración general de la vía:</p>
+					<select>
+						<option value="Config_gral_via1">Autopista</option>
+						<option value="Config_gral_via2">Autovía</option>
+						<option value="Config_gral_via3">Ruta</option>
+						<option value="Config_gral_via4">Camino/Pasaje</option>
+						<option value="Config_gral_via5">Avenida</option>
+						<option value="Config_gral_via6">Calle</option>
+						<option value="Config_gral_via7">Intersección tipo +</option>
+						<option value="Config_gral_via8">Intersección tipo T</option>
+						<option value="Config_gral_via9">Intersección tipo Y</option>
+						<option value="Config_gral_via10">Recta</option>
+						<option value="Config_gral_via11">Curva</option>
+						<option value="Config_gral_via12">Otro</option>
+					</select>
+					<input placeholder="Otro: Detallar" class="inputText"> 
+					<br><br>
+					<p>Características geométricas:</p>
+					<select>
+						<option value="Config_geom1">Intersección a nivel</option>
+						<option value="Config_geom2">Intersección a desnivel</option>
+						<option value="Config_geom3">Rotonda</option>
+						<option value="Config_geom4">Bifurcación</option>
+						<option value="Config_geom5">Isleta</option>
+						<option value="Config_geom6">Ciclovía</option>
+						<option value="Config_geom7">Paso a nivel FFCC</option>
+						<option value="Config_geom8">Sobrepuente, viaducto o paso superior</option>
+						<option value="Config_geom9">Debajo de puente o túnel</option>
+						<option value="Config_geom10">Otro</option>
+					</select>
+					<input placeholder="Otro: Detallar" class="inputText"> 
+					<br><br>
+					<p>Material:</p>
+					<select>
+						<option value="Material1">Pavimento de asfalto</option>
+						<option value="Material2">Pavimento de concreto/hormigón</option>
+						<option value="Material3">Tierra</option>
+						<option value="Material4">Ripio</option>
+						<option value="Material5">Adoquín</option>
+						<option value="Material6">Otro</option>
+					</select>
+					<input placeholder="Otro: Detallar" class="inputText"> 
+					<br><br>
+					<p>Estado de la calzada:</p>
+					<input type="checkbox">Baches<br>
+					<input type="checkbox">Ahuellamiento<br>
+					<input type="checkbox">Desprendimientos<br>
+					<input type="checkbox">Hundimientos<br>
+					<input type="checkbox">Rebabas<br>
+					<input type="checkbox">Marcas de frezado<br>
+					<input type="checkbox">Desnivel de banquinas<br>
+					<input type="checkbox">En reparación<br>
+					<input type="checkbox">Ondulaciones<br>
+					<input type="checkbox">Otro<br>
+					<input placeholder="Otro: Detallar"> 
+					<br><br>
+					<p>División física de la vía:</p>
+					<input type="checkbox">Barrera<br>
+					<input type="checkbox">Boulevard<br>
+					<input type="checkbox">Cantero central<br>
+					<input type="checkbox">Canal de desagüe<br>
+					<input type="checkbox">Ninguna<br>
+					<input type="checkbox">Otro<br>
+					<input placeholder="Otro: Detallar" class="inputText"> 
+					<br><br>
+					<p>Defensas laterales de la vía:</p>
+					<input type="checkbox">Barreras<br>
+					<input type="checkbox">Transitorias<br>
+					<input type="checkbox">Dañadas<br>
+					<input type="checkbox">Reparadas<br>
+					<input type="checkbox">Ninguna<br>
+					<input type="checkbox">Otro<br>
+					<input placeholder="Otro: Detallar" class="inputText"> 
+					<br><br>
+					<p>Señalización:</p><br>
+					<input type="checkbox">Señales verticales<br>
+					<input type="checkbox">Señales horizontales<br>
+					<input type="checkbox">Semáforo vehicular funcionando<br>
+					<input type="checkbox">Semáforo vehicular sin funcionar<br>
+					<input type="checkbox">Semáforo peatonal funcionando<br>
+					<input type="checkbox">Semáforo peatonal sin funcionar<br>
+					<input type="checkbox">Otro<br>
+					<input placeholder="Otro: Detallar" class="inputText"> 
+					<br><br>
+					<p>Cámaras de seguridad:</p>
+					<input type="checkbox">Cámaras en funcionamiento<br>
+					<input type="checkbox">Cámaras sin funcionar<br>
+					<input type="checkbox">Cámaras públicas<br>
+					<input type="checkbox">Cámaras privadas<br>
+					<input type="checkbox">Captan directamente el accidente<br>
+					<input type="checkbox">Otro<br>
+					<input placeholder="Otro: Detallar" class="inputText"> 
+				</nav>
+			</details>
+			<details>
+				<summary>
+					<h4>CARACTERÍSTICAS DE LA VÍA AL MOMENTO DEL SUCESO</h4>
+				</summary>
+				<nav>
+					<p>Condiciones de la calzada:</p><br>
+					<input type="checkbox">Seca y limpia<br>
+					<input type="checkbox">Mojada<br>
+					<input type="checkbox">Con charcos<br>
+					<input type="checkbox">Inundada<br>
+					<input type="checkbox">Con hielo<br>
+					<input type="checkbox">Con nieve<br>
+					<input type="checkbox">Con barro<br>
+					<input type="checkbox">Con derrame<br>
+					<input type="checkbox">Otro<br>
+					<input placeholder="Otro: Detallar" class="inputText"> 
+					<br>
+					<p>Entorno:</p><br>
+					<input type="checkbox">Amanecer<br>
+					<input type="checkbox">Diurno<br>
+					<input type="checkbox">Atardecer<br>
+					<input type="checkbox">Nocturno<br>
+					<input type="checkbox">Luz artificial funcionando<br>
+					<input type="checkbox">Luz artificial sin funcionar<br>
+					<input type="checkbox">Visibilidad reducida por humo<br>
+					<input type="checkbox">Visibilidad reducida por niebla<br>
+					<input type="checkbox">Visibilidad reducida por polvo<br>
+					<input type="checkbox">A determinar<br>
+					<input type="checkbox">Otro<br>
+					<input placeholder="Otro: Detallar" class="inputText"> 
+					<br>
+					<p>Estado meteorológico:</p><br>
+					<input type="checkbox">Despejado<br>
+					<input type="checkbox">Nublado<br>
+					<input type="checkbox">Lluvia<br>
+					<input type="checkbox">Granizo<br>
+					<input type="checkbox">Nieve<br>
+					<input type="checkbox">Viento<br>
+					<input type="checkbox">Otro<br>
+					<input placeholder="Otro: Detallar" class="inputText"> 
+					<br>
+					<p>Obstáculos:</p><br>
+					<input type="checkbox">Obstáculos visuales<br>
+					<input type="checkbox">Sobre la calzada<br>
+					<input type="checkbox">Animales sueltos<br>
+					<input type="checkbox">Al costado de la calzada<br>
+					<input type="checkbox">Otro<br>
+					<input placeholder="Otro: Detallar" class="inputText"> 
+				</nav>
+			</details>
+			<details>
+				<summary>
+					<h4>MEDICIONES SOBRE LA VÍA</h4>
+				</summary>
+				<nav>
+
+				</nav>
+			</details>
+		</main>
+	</body>
+</html>
