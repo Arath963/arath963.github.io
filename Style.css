@@ -130,5 +130,18 @@ legend {
     font-family: Calibri;
 }
 
+.container {
+    display: flex;
+}
 
+.uno, .dos, .tres {
+    flex-grow: 1;
+}
+
+.reporte {
+    background-color: gray;
+    border-color: gainsboro;
+    color: white;
+    border-radius: 10px;
+}
 
